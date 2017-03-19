@@ -85,15 +85,15 @@ WSGI_APPLICATION = 'LSLC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'STORAGE_ENGINE': 'InnoDB',
+        # 'STORAGE_ENGINE': 'InnoDB',
         'NAME': '',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET storage_engine=InnoDB',
-        }
+        # 'OPTIONS': {
+        #     'init_command': 'SET storage_engine=InnoDB',
+        # }
     }
 }
 
