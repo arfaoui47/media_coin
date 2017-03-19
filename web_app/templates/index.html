@@ -2,21 +2,22 @@
 {% load staticfiles %}
 
 {% block main %}
-  <div class="text-center col-md-4 col-md-offset-4 col-center main">
+  <div class="text-center container-fluid col-center main">
     <div>
-      <h1>App</h1>
-
+      <h1>LSLC</h1>
+      <h1>We Like Social Media & We Love Coding</h1>
+      <hr>
       {% if user and not user.is_anonymous %}
         <div class="content">
           <div>
-            <img src="http://graph.facebook.com/{{ uid }}/picture" class="circular" width="100px">
+            <img src="{{ image }}" class="circular" width="100px">
           </div>
           <div>
             <h4>Hello {{ user.get_full_name|default:user.username }}!</h4>
           </div>
 
           <a href="{% url 'auth:logout' %}?next={{ request.path }}">
-            <img src="{% static "img/fb_logout.png" %}" width="150px">
+            | logout
           </a>
         </div>
       {% else %}
@@ -27,12 +28,11 @@
         {% else %}
           <div class="content">
             <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
-              <img src="" width="300px">login
+              <img src="{% static "imgs/fb_login.png" %}" width="300px">
             </a>
           </div>
         {% endif %}
       {% endif %}
-
     </div>
   </div>
 {% endblock %}
