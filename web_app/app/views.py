@@ -3,6 +3,8 @@ import requests
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from .models import Profile
+
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -15,11 +17,13 @@ class IndexView(TemplateView):
             image = requests.get(
                 "http://graph.facebook.com/{}/picture?redirect=false&type=large".format(uid)
             ).json()
+            user_api_token = Profile.objects.get(user=user).token
 
             context = {
                 'user': user,
                 'request': self.request,
-                'image': image['data']['url']
+                'image': image['data']['url'],
+                'api_token': user_api_token
             }
         else:
             context = {'request': self.request}
